@@ -1,9 +1,8 @@
 fastapi
-uvicorn
+uvicorn[standard]
 motor
 python-dotenv
-pydantic
+pydantic[email]
 passlib[bcrypt]
-python-jose[cryptography]
-email-validator
-
+bcrypt
+python-jose

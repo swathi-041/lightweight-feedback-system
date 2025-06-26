@@ -1,70 +1,130 @@
-# Getting Started with Create React App
+# 📝 Lightweight Feedback System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple, secure platform for managers to share structured feedback with employees.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- 🔐 **Authentication** with role-based access (Manager & Employee)
+- 🧑‍💼 **Manager Dashboard** with feedback stats and submission
+- 👨‍🔧 **Employee Timeline** with feedback history
+- 📌 **Feedback** includes strengths, improvements, sentiment & tags
+- ✅ Acknowledgement system for employees
+- 💬 Comments from employees on feedback
+- 📦 Dockerized Python (FastAPI) backend
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🧑‍💻 Tech Stack
 
-### `npm test`
+| Layer     | Tech               |
+|-----------|--------------------|
+| Frontend  | React + Tailwind   |
+| Backend   | FastAPI (Python)   |
+| Database  | MongoDB Atlas      |
+| Auth      | JWT                |
+| DevOps    | Docker             |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ⚙️ Getting Started (Local)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ✅ Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js + npm
+- Python 3.10+
+- Docker (for backend)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+### 1. Clone the Repo
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+git clone https://github.com/swathi-041/lightweight-feedback-system
+cd lightweight-feedback-system
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 2. Frontend Setup
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+cd frontend
+npm install
+npm start
+```
 
-## Learn More
+Runs on: [http://localhost:3000](http://localhost:3000)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 3. Backend Setup
 
-### Code Splitting
+```bash
+cd backend
+cp .env.example .env  # or create .env manually
+docker build -t feedback-backend .
+docker run -p 8000:8000 feedback-backend
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Runs on: [http://localhost:8000](http://localhost:8000)
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 4. MongoDB Setup
 
-### Making a Progressive Web App
+Use **MongoDB Atlas**, and paste your connection string in `.env` file like:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```ini
+MONGO_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/feedbackdb
+```
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 📄 API Endpoints
 
-### Deployment
+### 🔐 Auth
+- `POST /api/auth/register` – Register user
+- `POST /api/auth/login` – Login user
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 📌 Feedback
+- `POST /api/feedback/` – Submit feedback
+- `GET /api/feedback/employee` – View employee feedback
+- `GET /api/feedback/manager` – View manager dashboard
+- `PUT /api/feedback/comment/{id}` – Add employee comment
+- `PUT /api/feedback/acknowledge/{id}` – Acknowledge feedback
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🐳 Docker Info
+
+**Dockerfile:** Located at `/backend/Dockerfile`
+
+### 🛠 Build:
+
+```bash
+docker build -t feedback-backend .
+```
+
+### 🚀 Run:
+
+```bash
+docker run -p 8000:8000 feedback-backend
+```
+
+---
+
+## 🙋‍♀️ Notes
+
+- Auth is fully implemented using **JWT**
+- All API routes are **protected**
+- Role-based access is enforced on both **frontend** and **backend**
+
+---
+
+## 📬 Contact
+
+**Built by**: SAMUDRALA SWATHI
+
+> Feel free to reach out via GitHub or email if you'd like to collaborate or need support!
